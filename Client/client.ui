@@ -18,16 +18,16 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QLabel" name="addressLabel">
+       <widget class="QLabel" name="hostnameLabel">
         <property name="text">
-         <string>Address</string>
+         <string>Hostname</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="addressLineEdit">
+       <widget class="QLineEdit" name="hostnameLineEdit">
         <property name="text">
-         <string>127.0.0.1</string>
+         <string>localhost</string>
         </property>
        </widget>
       </item>
@@ -84,15 +84,26 @@
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="chatDisplayTextEdit"/>
+     <widget class="QTextEdit" name="chatDisplayTextEdit">
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+     </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <item>
-       <widget class="QLineEdit" name="inputLineEdit"/>
+       <widget class="QLineEdit" name="inputLineEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QPushButton" name="sendButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
         <property name="text">
          <string>Send</string>
         </property>
@@ -105,5 +116,42 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>connectDisconnectButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Client</receiver>
+   <slot>connectDisconnectButtonPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>352</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sendButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Client</receiver>
+   <slot>sendButtonPressed()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>352</x>
+     <y>278</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>connectDisconnectButtonPressed()</slot>
+  <slot>sendButtonPressed()</slot>
+ </slots>
 </ui>

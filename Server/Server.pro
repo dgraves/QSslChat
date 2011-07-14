@@ -4,15 +4,17 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui network
 
 TARGET = Server
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        server.cpp
+        server.cpp \
+    sslserver.cpp
 
-HEADERS  += server.h
+HEADERS  += server.h \
+    sslserver.h
 
 FORMS    += server.ui

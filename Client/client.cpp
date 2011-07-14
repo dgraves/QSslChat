@@ -1,4 +1,5 @@
 #include <QDateTime>
+#include <QMessageBox>
 #include "client.h"
 #include "ui_client.h"
 
@@ -64,6 +65,7 @@ void Client::sendButtonPressed()
   {
     message += '\n';
     socket.write(message.toLocal8Bit().constData());
+    ui->inputLineEdit->clear();
   }
 }
 
@@ -76,10 +78,25 @@ void Client::connectedToServer()
   ui->chatDisplayTextEdit->clear();
 }
 
+// Process SSL errors
 void Client::sslErrors(const QList<QSslError> &errors)
 {
-  if (errors.first() == QSslError::SelfSignedCertificate)
+  QString errorStrings;
+  foreach (QSslError error, errors)
   {
+    errorStrings += error.errorString();
+    if (error != errors.last())
+    {
+      errorStrings += '\n';
+    }
+  }
+
+  // Display error details to user and ask for permission to proceed anyway
+  QMessageBox::StandardButton result = QMessageBox::question(this, "SSL Errors",
+    QString("The following errors were encountered while negotiating the SSL connection:\n%1\nProceed anyway?").arg(errorStrings));
+  if (result == QMessageBox::Ok)
+  {
+    socket.ignoreSslErrors();
   }
 }
 
@@ -103,6 +120,10 @@ void Client::connectionClosed()
 
 void Client::socketError()
 {
-  connectionClosed();
   ui->chatDisplayTextEdit->setText(QString("Socket Error: %1").arg(socket.errorString()));
+  if (socket.state() != QAbstractSocket::ConnectedState)
+  {
+    connectionClosed();
+  }
+  socket.close();
 }

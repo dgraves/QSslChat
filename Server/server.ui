@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>QSslChat Server</string>
+   <string>QSsl Chat Server</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -55,7 +55,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="startStopButon">
+        <widget class="QPushButton" name="startStopButton">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -131,5 +131,93 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>startStopButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Server</receiver>
+   <slot>startStopButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>348</x>
+     <y>25</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>keyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Server</receiver>
+   <slot>keyButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>373</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>certificateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Server</receiver>
+   <slot>certificateButtonClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>373</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>keyLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>Server</receiver>
+   <slot>keyFileChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>62</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>certificateLineEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>Server</receiver>
+   <slot>certificateFileChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>88</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>startStopButtonClicked()</slot>
+  <slot>keyButtonClicked()</slot>
+  <slot>certificateButtonClicked()</slot>
+  <slot>keyFileChanged(QString)</slot>
+  <slot>certificateFileChanged(QString)</slot>
+ </slots>
 </ui>

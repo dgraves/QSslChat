@@ -93,8 +93,9 @@ void Client::sslErrors(const QList<QSslError> &errors)
 
   // Display error details to user and ask for permission to proceed anyway
   QMessageBox::StandardButton result = QMessageBox::question(this, "SSL Errors",
-    QString("The following errors were encountered while negotiating the SSL connection:\n%1\nProceed anyway?").arg(errorStrings));
-  if (result == QMessageBox::Ok)
+    QString("The following errors were encountered while negotiating the SSL connection:\n\n%1\n\nProceed anyway?").arg(errorStrings),
+    QMessageBox::Yes|QMessageBox::No);
+  if (result == QMessageBox::Yes)
   {
     socket.ignoreSslErrors();
   }

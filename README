@@ -1,0 +1,10 @@
+QSsl Chat Client and Server
+===========================
+Simple chat client and server applications to demonstrate the use of QSslSocket when opening secure connections as a client and accepting secure connections as a server. These examples provide notifications to the user when SSL support is not available, when key and certificate files are needed, and when SSL errors are encountered. 
+
+The sample applications provided are fully functional chat server and client applications that communicate with SSL sockets.  Sample self-signed certificate and key files are provided for use with the server.
+
+The applications were designed to supplement the following blog post containing notes about Qt's SSL support:
+
+  http://dgraves.org/content/qt-notes-working-qsslsocket
+

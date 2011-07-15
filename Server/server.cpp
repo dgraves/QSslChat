@@ -37,6 +37,16 @@ Server::Server(QWidget *parent) :
 
 Server::~Server()
 {
+  if (server.isListening())
+  {
+    server.close();
+  }
+
+  foreach (QSslSocket *socket, sockets)
+  {
+    delete socket;
+  }
+
   delete ui;
 }
 

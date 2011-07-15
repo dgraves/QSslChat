@@ -1,4 +1,4 @@
-#include <QSslSocket.h>
+#include <QSslSocket>
 #include "sslserver.h"
 
 // Intercept new socket connection and enable SSL

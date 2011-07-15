@@ -40,12 +40,19 @@ Client::Client(QWidget *parent) :
 
 Client::~Client()
 {
+  if (socket.isOpen())
+  {
+    socket.close();
+  }
+
   delete ui;
 }
 
 void Client::connectDisconnectButtonPressed()
 {
-  if (socket.mode() == QAbstractSocket::UnconnectedState)
+  ui->connectDisconnectButton->setEnabled(false);
+
+  if (socket.state() == QAbstractSocket::UnconnectedState)
   {
     // Initiate an SSL connection to the chat server.
     socket.connectToHostEncrypted(ui->hostnameLineEdit->text(), ui->portSpinBox->value());
@@ -54,8 +61,6 @@ void Client::connectDisconnectButtonPressed()
   {
     socket.close();
   }
-
-  ui->connectDisconnectButton->setEnabled(false);
 }
 
 void Client::sendButtonPressed()

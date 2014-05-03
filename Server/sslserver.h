@@ -11,7 +11,7 @@ class SslServer : public QTcpServer
   Q_OBJECT
 
 public:
-  virtual void incomingConnection(int socketDescriptor);
+  virtual void incomingConnection(qintptr socketDescriptor);
 };
 
 #endif // SSLSERVER_H
